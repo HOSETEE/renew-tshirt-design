@@ -1,0 +1,663 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HOSETEE 數位轉型解決方案</title>
+  <style>
+    :root {
+      --berkeley-blue: #1d3557;
+      --cerulean: #457b9d;
+      --non-photo-blue: #a8dadc;
+      --honeydew: #f1faee;
+      --red-pantone: #e63946;
+      --bg-gray: #f6f8fb;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; font-family: "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif; color: var(--text); }
+    body { background: #fff; line-height: 1.55; }
+    .container { width: min(1120px, 92vw); margin: 0 auto; }
+    .header {
+      position: sticky; top: 0; z-index: 30;
+      background: rgba(255,255,255,0.9); backdrop-filter: blur(6px);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; }
+    .logo { font-weight: 900; letter-spacing: 0.5px; color: var(--berkeley-blue); }
+    .hero {
+      background: linear-gradient(135deg, var(--berkeley-blue), var(--cerulean), var(--non-photo-blue));
+      color: #fff; padding: 72px 0 64px;
+    }
+    .hero h1 { font-size: clamp(30px, 5vw, 56px); line-height: 1.15; margin: 0 0 14px; }
+    .hero p { margin: 8px 0; opacity: 0.95; }
+    .btn {
+      border: 0; border-radius: 999px; cursor: pointer; font-weight: 700;
+      padding: 12px 20px; transition: all .2s ease; display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-primary { background: var(--honeydew); color: var(--berkeley-blue); }
+    .btn-primary:hover { transform: translateY(-1px); }
+    .section { padding: 56px 0; }
+    .section-alt { background: var(--bg-gray); }
+    .section-title { margin: 0 0 10px; font-size: clamp(24px, 3.2vw, 40px); color: var(--berkeley-blue); }
+    .section-subtitle { margin: 0 0 20px; color: var(--cerulean); font-weight: 700; }
+    .tag { display: inline-block; background: #eaf1f8; color: var(--berkeley-blue); padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 800; letter-spacing: 0.08em; }
+    .grid-2 { display: grid; grid-template-columns: 1fr; gap: 20px; }
+    .prototype {
+      background: #fff; border: 1px solid var(--border); border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(29, 53, 87, 0.06); padding: 16px;
+    }
+    .prototype.dark { background: #121826; color: #fff; border-color: #263144; }
+    .kpi { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; margin-top: 12px; }
+    .kpi-item { border: 1px solid var(--border); border-radius: 12px; text-align: center; padding: 10px; background: #fff; }
+    .kpi-value { font-size: 28px; font-weight: 900; line-height: 1; }
+    .small { font-size: 12px; color: var(--muted); }
+    .danger { color: var(--red-pantone); }
+    .good { color: var(--cerulean); }
+    .list { padding-left: 18px; margin: 10px 0 0; }
+    .list li { margin: 8px 0; }
+    .feature-wrap { display: grid; grid-template-columns: 1fr; gap: 18px; }
+    .card {
+      background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 16px;
+    }
+    .pill { display: inline-block; font-size: 12px; border-radius: 999px; padding: 2px 8px; }
+    .pill-danger { background: #ffe7ea; color: #c12836; }
+    .pill-good { background: #e7f5fa; color: #2d6d95; }
+    .bar-wrap { position: relative; background: #edf1f5; height: 12px; border-radius: 999px; overflow: hidden; }
+    .bar-fill { position: absolute; left: 0; top: 0; height: 100%; border-radius: 999px; width: 0; transition: width .6s ease; }
+    .bar-line { position: absolute; top: -3px; width: 2px; height: 18px; background: #f59e0b; }
+    .btn-solid {
+      border: 0; width: 100%; border-radius: 10px; padding: 10px 12px;
+      background: var(--berkeley-blue); color: #fff; font-weight: 700; cursor: pointer;
+    }
+    .btn-solid:disabled { opacity: .55; cursor: not-allowed; }
+    .btn-lite {
+      border: 1px solid var(--border); border-radius: 10px; background: #fff; color: var(--text);
+      padding: 8px 10px; cursor: pointer;
+    }
+    .pos-row { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.12); font-size: 13px; }
+    .chart {
+      display: grid; grid-template-columns: repeat(6, minmax(0,1fr)); gap: 8px; height: 124px; align-items: end;
+      margin-top: 10px;
+    }
+    .col { display: flex; flex-direction: column; gap: 3px; align-items: stretch; }
+    .cost { background: rgba(69,123,157,0.25); border-radius: 6px 6px 0 0; height: 0; transition: height .8s ease; }
+    .margin { background: var(--cerulean); border-radius: 6px 6px 0 0; height: 0; transition: height .8s ease; }
+    .terminal {
+      background: #0f172a; color: #cbd5e1; border-radius: 12px; min-height: 120px; padding: 10px;
+      font-family: Consolas, Monaco, monospace; font-size: 12px;
+    }
+    .member-card {
+      border-radius: 16px; color: #fff; padding: 14px;
+      background: linear-gradient(135deg, #1d3557, #457b9d);
+      transition: background .35s ease;
+    }
+    .progress { height: 8px; background: rgba(255,255,255,0.25); border-radius: 999px; overflow: hidden; margin-top: 10px; }
+    .progress > i { display: block; height: 100%; background: #fff; width: 0; transition: width .35s ease; }
+    .stock-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; }
+    .stock-box { text-align: center; border: 1px solid var(--border); border-radius: 12px; padding: 10px; background: #fafafa; }
+    .stock-no { font-weight: 900; font-size: 24px; color: var(--berkeley-blue); margin: 6px 0; }
+    .kiosk-preview {
+      border: 2px solid #ddd; border-radius: 12px; height: 140px; display: grid; place-items: center; margin-bottom: 10px;
+      background: #f8f8f8;
+    }
+    .color-dots { display: flex; gap: 8px; margin: 8px 0 12px; }
+    .dot {
+      width: 28px; height: 28px; border-radius: 999px; border: 2px solid #cbd5e1; cursor: pointer;
+    }
+    .dot.active { outline: 2px solid var(--red-pantone); outline-offset: 1px; }
+    .sizes { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+    .size-btn {
+      border: 1px solid var(--border); border-radius: 9px; padding: 6px 10px; background: #fff; cursor: pointer; font-weight: 700;
+    }
+    .size-btn.active { background: var(--berkeley-blue); color: #fff; border-color: var(--berkeley-blue); }
+    .cta {
+      color: #fff; text-align: center; background: linear-gradient(90deg, var(--berkeley-blue), var(--cerulean));
+      padding: 56px 0;
+    }
+    .contact { background: var(--honeydew); text-align: center; padding: 56px 0; }
+    .phone-link {
+      color: #fff; text-decoration: none; background: var(--berkeley-blue);
+      display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 999px; font-weight: 700;
+    }
+    footer { background: var(--berkeley-blue); color: rgba(255,255,255,0.75); text-align: center; padding: 16px 0; font-size: 13px; }
+    @media (min-width: 900px) {
+      .grid-2 { grid-template-columns: 1fr 380px; }
+      .feature-wrap { grid-template-columns: 1fr 360px; align-items: start; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <div class="logo">HOSETEE Solutions</div>
+      <button class="btn btn-primary" id="jump-contact">立即聯繫我們</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>服飾品牌的<br />數位轉型解決方案</h1>
+      <p>您的公司有 1,000 件作品嗎？每次上架新款式或下架舊顏色，都得逐一操作上千支商品？</p>
+      <p>Hosetee 從根本改變遊戲規則，作品與載體解耦，一鍵搞定所有變更。</p>
+      <p style="margin-top:20px;"><button class="btn btn-primary" id="hero-contact">立即聯繫我們 →</button></p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <span class="tag">模組 A</span>
+      <h2 class="section-title">作品 × 載體智慧管理</h2>
+      <p class="section-subtitle">徹底解決 SKU 爆炸問題</p>
+      <div class="grid-2">
+        <div>
+          <div class="card">
+            <p><strong class="danger">核心痛點</strong><br />
+              傳統模式：<strong>1,000 件作品 × 5 載體 × 10 色 × 6 碼 = 300,000 筆 SKU</strong>，
+              每次新增或下架都得大量人工維護。</p>
+          </div>
+          <div class="card" style="margin-top:12px;">
+            <p><strong class="good">解決方案</strong><br />
+              作品與載體解耦，新增一款底衫即可讓全部作品自動上線。</p>
+          </div>
+          <div class="kpi">
+            <div class="kpi-item"><div class="kpi-value danger">1,000+</div><div class="small">傳統操作次數</div></div>
+            <div class="kpi-item"><div class="kpi-value good">1</div><div class="small">Hosetee 操作次數</div></div>
+          </div>
+        </div>
+        <div class="prototype" id="sku-box">
+          <p class="small">互動示範：新增一款底衫</p>
+          <div class="kpi">
+            <div class="kpi-item">
+              <div class="small danger">傳統模式</div>
+              <div id="sku-traditional" class="kpi-value danger">0</div>
+              <div class="small">次操作</div>
+            </div>
+            <div class="kpi-item">
+              <div class="small good">Hosetee</div>
+              <div id="sku-hosetee" class="kpi-value good">0</div>
+              <div class="small">次操作</div>
+            </div>
+          </div>
+          <p id="sku-result" class="pill pill-good" style="display:none; margin:8px 0 10px;">✓ 1,000 件作品全部自動上線</p>
+          <button class="btn-solid" id="sku-btn">點擊：新增一款底衫</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container feature-wrap">
+      <div>
+        <span class="tag">模組 B</span>
+        <h2 class="section-title">優越庫存管理系統</h2>
+        <p class="section-subtitle">一鍵完成上千種商品的採購任務</p>
+        <ul class="list">
+          <li>自動採購建議：安全庫存 + 在途採購 + 預購欠客</li>
+          <li>多店庫存管理與儲位定位</li>
+          <li>盲盤快速盤點系統，降低人為錯誤</li>
+        </ul>
+      </div>
+      <div class="prototype">
+        <p class="small">庫存採購建議試算</p>
+        <div id="inventory-rows"></div>
+        <button class="btn-solid" id="inventory-btn" style="margin-top:10px;">一鍵計算採購建議</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container feature-wrap">
+      <div>
+        <span class="tag">模組 C</span>
+        <h2 class="section-title">專業 POS 收銀系統</h2>
+        <p class="section-subtitle">Film × Blank 完美結帳流程</p>
+      </div>
+      <div class="prototype dark">
+        <p class="small" style="color:#93a4bf;">POS 收銀端 · 已連線</p>
+        <div id="pos-list" style="min-height:90px; border:1px solid rgba(255,255,255,.15); border-radius:10px; padding:10px; margin:8px 0 12px;">
+          <p class="small" style="color:#7d8aa2;">等待掃碼...</p>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <button id="pos-scan" class="btn-solid" style="background:#2b7ca7;">掃碼</button>
+          <button id="pos-checkout" class="btn-solid" style="background:#16a34a; display:none;">結帳</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container feature-wrap">
+      <div>
+        <span class="tag">模組 D</span>
+        <h2 class="section-title">企業級銷售情報</h2>
+        <p class="section-subtitle">即時掌握營銷成本與獲利狀況</p>
+      </div>
+      <div class="prototype">
+        <p class="small">銷售情報儀表板</p>
+        <div style="display:flex; gap:16px;">
+          <div><div class="small">本月營收</div><div class="kpi-value good">$<span id="rev-counter">0</span></div></div>
+          <div><div class="small">毛利率</div><div class="kpi-value good"><span id="margin-counter">0</span>%</div></div>
+        </div>
+        <div class="chart" id="sales-chart"></div>
+        <div class="small" style="margin-top:8px;">色塊：深色為毛利，淺色為成本</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container feature-wrap">
+      <div>
+        <span class="tag">模組 E</span>
+        <h2 class="section-title">AI 智能報價系統</h2>
+        <p class="section-subtitle">企業訂單快速精準報價</p>
+      </div>
+      <div class="prototype dark">
+        <p class="small" style="color:#8fa2bf;">AI 報價引擎</p>
+        <div class="terminal" id="ai-terminal"></div>
+        <button class="btn-solid" id="ai-btn" style="margin-top:10px; background:#2b7ca7;">啟動 AI 智能報價</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container feature-wrap">
+      <div>
+        <span class="tag">模組 F</span>
+        <h2 class="section-title">會員 CRM 系統</h2>
+        <p class="section-subtitle">購物金 × 點數 × 贈品兌換</p>
+      </div>
+      <div class="prototype">
+        <div class="member-card" id="crm-card">
+          <div style="display:flex; justify-content:space-between;">
+            <div><div class="small" style="color:rgba(255,255,255,.8)">HOSETEE 會員</div><strong>王小明</strong></div>
+            <div id="crm-tier">銀卡會員</div>
+          </div>
+          <div style="display:flex; gap:10px; margin-top:12px;">
+            <div style="flex:1; background:rgba(255,255,255,.14); border-radius:10px; padding:8px;">
+              <div class="small" style="color:rgba(255,255,255,.8)">購物金</div>
+              <div style="font-size:22px; font-weight:900;">$<span id="crm-credits">320</span></div>
+            </div>
+            <div style="flex:1; background:rgba(255,255,255,.14); border-radius:10px; padding:8px;">
+              <div class="small" style="color:rgba(255,255,255,.8)">點數</div>
+              <div style="font-size:22px; font-weight:900;"><span id="crm-points">1240</span></div>
+            </div>
+          </div>
+          <div class="progress"><i id="crm-progress"></i></div>
+        </div>
+        <button class="btn-solid" id="crm-buy" style="margin-top:10px;">模擬一筆消費 (+180 點, +$45)</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container feature-wrap">
+      <div>
+        <span class="tag">模組 G</span>
+        <h2 class="section-title">線上購物網站 O2O 整合</h2>
+        <p class="section-subtitle">線上線下庫存即時同步</p>
+      </div>
+      <div class="prototype">
+        <div class="stock-grid">
+          <div class="stock-box">
+            <div class="small">線上商城</div>
+            <div class="stock-no" id="o2o-web">24</div>
+            <button class="btn-lite" id="o2o-web-btn">下單 -1</button>
+          </div>
+          <div class="stock-box">
+            <div class="small">實體 POS</div>
+            <div class="stock-no" id="o2o-pos">24</div>
+            <button class="btn-lite" id="o2o-pos-btn">下單 -1</button>
+          </div>
+        </div>
+        <p id="o2o-msg" class="small" style="margin-top:8px;">尚未同步事件</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container feature-wrap">
+      <div>
+        <span class="tag">模組 H</span>
+        <h2 class="section-title">Kiosk 點餐機系統</h2>
+        <p class="section-subtitle">全台首創衣服點餐系統</p>
+      </div>
+      <div class="prototype" style="background:#f4f7fb;">
+        <div class="kiosk-preview" id="kiosk-preview">
+          <svg viewBox="0 0 96 96" width="92" height="92" aria-hidden="true">
+            <path id="kiosk-shirt" d="M28 18L38 12H58L68 18L80 28L72 40L66 35V80H30V35L24 40L16 28L28 18Z" fill="#f8f8f8" stroke="#1d3557" stroke-width="2.5" stroke-linejoin="round" />
+            <path d="M38 12C40.5 17 43.8 19.5 48 19.5C52.2 19.5 55.5 17 58 12" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </div>
+        <div class="small">選擇顏色</div>
+        <div class="color-dots" id="kiosk-colors"></div>
+        <div class="small">選擇尺寸</div>
+        <div class="sizes" id="kiosk-sizes"></div>
+        <button class="btn-solid" id="kiosk-order">請選擇尺寸</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <h2 style="margin:0 0 8px;">準備好讓您的服飾品牌升級了嗎？</h2>
+      <p style="margin:0 0 18px; opacity:.9;">已有數十家品牌透過 Hosetee 降低營運成本、提升管理效率。</p>
+      <button class="btn btn-primary" id="cta-contact">聯繫我們，了解更多</button>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2 style="margin-top:0; color:var(--berkeley-blue);">立即聯繫我們</h2>
+      <p style="color:var(--muted);">想了解系統功能、預約展示或客製化需求，歡迎直接來電。</p>
+      <a class="phone-link" href="tel:0952-918018">📞 0952-918018</a>
+      <p class="small" style="margin-top:12px;">營業時間：週一至週五 09:00 - 18:00</p>
+    </div>
+  </section>
+
+  <footer>© <span id="year"></span> HOSETEE. All rights reserved.</footer>
+
+  <script>
+    (function () {
+      const $ = (id) => document.getElementById(id);
+      const toContact = () => $("contact").scrollIntoView({ behavior: "smooth" });
+      ["jump-contact", "hero-contact", "cta-contact"].forEach((id) => $(id).addEventListener("click", toContact));
+      $("year").textContent = String(new Date().getFullYear());
+
+      // A: SKU simulation
+      let skuRunning = false;
+      $("sku-btn").addEventListener("click", () => {
+        if (skuRunning) return;
+        skuRunning = true;
+        let t = 0;
+        $("sku-result").style.display = "none";
+        $("sku-traditional").textContent = "0";
+        $("sku-hosetee").textContent = "0";
+        $("sku-btn").textContent = "模擬中...";
+        const timer = setInterval(() => {
+          t += 10;
+          $("sku-traditional").textContent = String(t);
+          if (t >= 1000) {
+            clearInterval(timer);
+            $("sku-hosetee").textContent = "1";
+            $("sku-result").style.display = "inline-block";
+            $("sku-btn").textContent = "點擊：新增一款底衫";
+            skuRunning = false;
+          }
+        }, 16);
+      });
+
+      // B: inventory
+      const inventoryRows = [
+        { name: "白色 S", current: 3, safety: 10, preorder: 5, transit: 2 },
+        { name: "黑色 M", current: 0, safety: 10, preorder: 8, transit: 0 },
+        { name: "藍色 L", current: 7, safety: 10, preorder: 0, transit: 3 },
+        { name: "灰色 XL", current: 1, safety: 10, preorder: 3, transit: 0 }
+      ];
+      const invEl = $("inventory-rows");
+      invEl.innerHTML = inventoryRows.map((r, i) => {
+        const max = r.safety * 1.5;
+        const currentPct = Math.min((r.current / max) * 100, 100);
+        const safetyPct = Math.min((r.safety / max) * 100, 100);
+        const suggestion = Math.max(0, r.preorder + r.safety - r.current - r.transit);
+        return (
+          '<div class="card" style="padding:10px; margin-top:8px;">' +
+            '<div style="display:flex; justify-content:space-between; align-items:center;">' +
+              '<strong style="font-size:13px;">' + r.name + '</strong>' +
+              (r.current === 0 ? '<span class="pill pill-danger">缺貨</span>' : '') +
+            '</div>' +
+            '<div class="bar-wrap" style="margin-top:8px;">' +
+              '<i class="bar-fill" id="inv-fill-' + i + '" style="background:' + (r.current < r.safety ? "#e66b75" : "#5ea3c8") + ';"></i>' +
+              '<i class="bar-line" style="left:' + safetyPct + '%;"></i>' +
+            '</div>' +
+            '<div class="small" style="margin-top:6px;">安全庫存 ' + r.safety + ' + 預購 ' + r.preorder + ' - 現有 ' + r.current + ' - 在途 ' + r.transit + '</div>' +
+            '<div class="small" id="inv-result-' + i + '" style="margin-top:4px; color:var(--berkeley-blue); font-weight:700;">尚未計算</div>' +
+          '</div>'
+        );
+      }).join("");
+
+      let invDone = false;
+      $("inventory-btn").addEventListener("click", () => {
+        if (invDone) {
+          inventoryRows.forEach((_, i) => {
+            $("inv-fill-" + i).style.width = "0%";
+            $("inv-result-" + i).textContent = "尚未計算";
+          });
+          $("inventory-btn").textContent = "一鍵計算採購建議";
+          invDone = false;
+          return;
+        }
+        inventoryRows.forEach((r, i) => {
+          const max = r.safety * 1.5;
+          const currentPct = Math.min((r.current / max) * 100, 100);
+          const suggestion = Math.max(0, r.preorder + r.safety - r.current - r.transit);
+          setTimeout(() => {
+            $("inv-fill-" + i).style.width = currentPct + "%";
+            $("inv-result-" + i).textContent = suggestion > 0 ? ("建議採購 " + suggestion) : "庫存充足";
+          }, 140 * i);
+        });
+        $("inventory-btn").textContent = "重新示範";
+        invDone = true;
+      });
+
+      // C: POS
+      const posItems = [
+        { name: "膠膜 - 貓咪圖案 (A4)", price: 0 },
+        { name: "白色 T-Shirt (M)", price: 590 }
+      ];
+      let posList = [];
+      let posChecked = false;
+      const renderPos = () => {
+        const list = $("pos-list");
+        if (posChecked) {
+          list.innerHTML = '<p style="color:#4ade80; font-weight:700;">✓ 結帳完成！庫存已扣減</p>';
+          $("pos-checkout").style.display = "none";
+          return;
+        }
+        if (!posList.length) {
+          list.innerHTML = '<p class="small" style="color:#7d8aa2;">等待掃碼...</p>';
+          $("pos-checkout").style.display = "none";
+          return;
+        }
+        let html = "";
+        let total = 0;
+        posList.forEach((item) => {
+          total += item.price;
+          html += '<div class="pos-row"><span>' + item.name + '</span><span>' + (item.price ? ("$" + item.price) : "含於組合") + "</span></div>";
+        });
+        html += '<div class="pos-row" style="font-weight:900; border-bottom:0;"><span>合計</span><span style="color:#a8dadc;">$' + total + "</span></div>";
+        list.innerHTML = html;
+        $("pos-checkout").style.display = "block";
+      };
+      $("pos-scan").addEventListener("click", () => {
+        if (posList.length || posChecked) return;
+        $("pos-list").innerHTML = '<p class="small" style="color:#7d8aa2;">讀取中...</p>';
+        setTimeout(() => {
+          posList = [posItems[0]];
+          renderPos();
+          setTimeout(() => { posList = posItems.slice(); renderPos(); }, 500);
+        }, 650);
+      });
+      $("pos-checkout").addEventListener("click", () => { posChecked = true; renderPos(); });
+
+      // D: sales chart & counters
+      const chartData = [
+        { month: "1月", revenue: 42, cost: 28 },
+        { month: "2月", revenue: 58, cost: 35 },
+        { month: "3月", revenue: 73, cost: 40 },
+        { month: "4月", revenue: 65, cost: 38 },
+        { month: "5月", revenue: 89, cost: 48 },
+        { month: "6月", revenue: 95, cost: 50 }
+      ];
+      $("sales-chart").innerHTML = chartData.map((d) => (
+        '<div class="col"><i class="cost"></i><i class="margin"></i><span class="small" style="text-align:center;">' + d.month + "</span></div>"
+      )).join("");
+
+      const animateCounter = (id, target, ms) => {
+        const start = performance.now();
+        const tick = (now) => {
+          const p = Math.min((now - start) / ms, 1);
+          const ease = 1 - Math.pow(1 - p, 3);
+          $(id).textContent = Math.floor(target * ease).toLocaleString();
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      };
+      animateCounter("rev-counter", 95800, 1200);
+      animateCounter("margin-counter", 47, 1000);
+      setTimeout(() => {
+        Array.from(document.querySelectorAll("#sales-chart .col")).forEach((col, i) => {
+          const cost = col.querySelector(".cost");
+          const margin = col.querySelector(".margin");
+          const d = chartData[i];
+          cost.style.height = (d.cost * 0.9) + "px";
+          margin.style.height = ((d.revenue - d.cost) * 0.9) + "px";
+        });
+      }, 160);
+
+      // E: AI quote
+      const aiLines = [
+        "分析訂單：T-Shirt × 200件...",
+        "套用數量折扣階梯...",
+        "計算膠膜印製成本...",
+        "比對歷史客戶報價...",
+        "✓ 報價完成：$58,000（含稅）"
+      ];
+      let aiRunning = false;
+      $("ai-btn").addEventListener("click", () => {
+        if (aiRunning) return;
+        aiRunning = true;
+        $("ai-terminal").innerHTML = "";
+        $("ai-btn").textContent = "AI 分析中...";
+        aiLines.forEach((line, i) => {
+          setTimeout(() => {
+            const p = document.createElement("div");
+            p.textContent = (line.startsWith("✓") ? "" : "> ") + line;
+            p.style.color = line.startsWith("✓") ? "#4ade80" : "#cbd5e1";
+            p.style.fontWeight = line.startsWith("✓") ? "700" : "400";
+            $("ai-terminal").appendChild(p);
+            if (i === aiLines.length - 1) {
+              $("ai-btn").textContent = "重新示範";
+              aiRunning = false;
+            }
+          }, i * 600);
+        });
+      });
+
+      // F: CRM
+      let points = 1240;
+      let credits = 320;
+      const renderCrm = () => {
+        $("crm-points").textContent = points.toLocaleString();
+        $("crm-credits").textContent = credits.toLocaleString();
+        $("crm-progress").style.width = Math.min((points / 2000) * 100, 100) + "%";
+        const gold = points >= 1350;
+        $("crm-tier").textContent = gold ? "金卡會員" : "銀卡會員";
+        $("crm-card").style.background = gold
+          ? "linear-gradient(135deg, #f59e0b, #d97706)"
+          : "linear-gradient(135deg, #1d3557, #457b9d)";
+      };
+      renderCrm();
+      $("crm-buy").addEventListener("click", () => {
+        $("crm-buy").disabled = true;
+        $("crm-buy").textContent = "結帳中...";
+        setTimeout(() => {
+          points += 180;
+          credits += 45;
+          renderCrm();
+          $("crm-buy").textContent = "模擬一筆消費 (+180 點, +$45)";
+          $("crm-buy").disabled = false;
+        }, 700);
+      });
+
+      // G: O2O
+      let webStock = 24;
+      let posStock = 24;
+      let syncing = false;
+      const renderO2o = () => {
+        $("o2o-web").textContent = String(webStock);
+        $("o2o-pos").textContent = String(posStock);
+      };
+      const syncFlow = (side) => {
+        if (syncing) return;
+        syncing = true;
+        if (side === "web") {
+          webStock = Math.max(0, webStock - 1);
+          $("o2o-msg").textContent = "線上訂單 → 同步門市庫存...";
+          renderO2o();
+          setTimeout(() => {
+            posStock = Math.max(0, posStock - 1);
+            syncing = false;
+            renderO2o();
+            $("o2o-msg").textContent = "雙通路庫存已同步";
+          }, 700);
+        } else {
+          posStock = Math.max(0, posStock - 1);
+          $("o2o-msg").textContent = "門市訂單 → 同步線上庫存...";
+          renderO2o();
+          setTimeout(() => {
+            webStock = Math.max(0, webStock - 1);
+            syncing = false;
+            renderO2o();
+            $("o2o-msg").textContent = "雙通路庫存已同步";
+          }, 700);
+        }
+      };
+      $("o2o-web-btn").addEventListener("click", () => syncFlow("web"));
+      $("o2o-pos-btn").addEventListener("click", () => syncFlow("pos"));
+
+      // H: Kiosk
+      const kioskColors = [
+        { name: "白色", hex: "#f8f8f8", border: "#ddd" },
+        { name: "黑色", hex: "#1a1a1a", border: "#555" },
+        { name: "藍色", hex: "#457b9d", border: "#457b9d" },
+        { name: "灰色", hex: "#9ca3af", border: "#9ca3af" }
+      ];
+      const kioskSizes = ["XS", "S", "M", "L", "XL"];
+      let kioskColor = 0;
+      let kioskSize = "";
+
+      const renderKiosk = () => {
+        $("kiosk-shirt").setAttribute("fill", kioskColors[kioskColor].hex);
+        $("kiosk-preview").style.background = kioskColors[kioskColor].hex;
+        $("kiosk-preview").style.borderColor = kioskColors[kioskColor].border;
+        $("kiosk-colors").innerHTML = kioskColors.map((c, i) =>
+          '<button class="dot ' + (i === kioskColor ? "active" : "") + '" data-color="' + i + '" title="' + c.name + '" style="background:' + c.hex + '; border-color:' + c.border + ';"></button>'
+        ).join("");
+        $("kiosk-sizes").innerHTML = kioskSizes.map((s) =>
+          '<button class="size-btn ' + (s === kioskSize ? "active" : "") + '" data-size="' + s + '">' + s + "</button>"
+        ).join("");
+        $("kiosk-order").textContent = kioskSize
+          ? ("確認點餐 · " + kioskColors[kioskColor].name + " " + kioskSize)
+          : "請選擇尺寸";
+      };
+      renderKiosk();
+      $("kiosk-colors").addEventListener("click", (e) => {
+        const btn = e.target.closest("[data-color]");
+        if (!btn) return;
+        kioskColor = Number(btn.getAttribute("data-color"));
+        renderKiosk();
+      });
+      $("kiosk-sizes").addEventListener("click", (e) => {
+        const btn = e.target.closest("[data-size]");
+        if (!btn) return;
+        kioskSize = btn.getAttribute("data-size");
+        renderKiosk();
+      });
+      $("kiosk-order").addEventListener("click", () => {
+        if (!kioskSize) return;
+        const btn = $("kiosk-order");
+        btn.disabled = true;
+        btn.textContent = "點餐完成，已送出";
+        setTimeout(() => {
+          kioskSize = "";
+          btn.disabled = false;
+          renderKiosk();
+        }, 1700);
+      });
+    })();
+  </script>
+</body>
+</html>
