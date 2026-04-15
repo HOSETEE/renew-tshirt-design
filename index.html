@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>HOSETEE 數位轉型解決方案</title>
+  <title>RENEW 客製化數位轉型解決方案</title>
   <style>
     :root {
       --berkeley-blue: #1d3557;
@@ -100,8 +100,14 @@
     .stock-box { text-align: center; border: 1px solid var(--border); border-radius: 12px; padding: 10px; background: #fafafa; }
     .stock-no { font-weight: 900; font-size: 24px; color: var(--berkeley-blue); margin: 6px 0; }
     .kiosk-preview {
-      border: 2px solid #ddd; border-radius: 12px; height: 140px; display: grid; place-items: center; margin-bottom: 10px;
-      background: #f8f8f8;
+      width: min(100%, 180px);
+      aspect-ratio: 3 / 4;
+      border: 2px solid #d1d5db;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 10px;
+      background: #f3f4f6;
     }
     .color-dots { display: flex; gap: 8px; margin: 8px 0 12px; }
     .dot {
@@ -132,7 +138,7 @@
 <body>
   <header class="header">
     <div class="container header-inner">
-      <div class="logo">HOSETEE Solutions</div>
+      <div class="logo">RENEW Customization Solutions</div>
       <button class="btn btn-primary" id="jump-contact">立即聯繫我們</button>
     </div>
   </header>
@@ -141,7 +147,7 @@
     <div class="container">
       <h1>服飾品牌的<br />數位轉型解決方案</h1>
       <p>您的公司有 1,000 件作品嗎？每次上架新款式或下架舊顏色，都得逐一操作上千支商品？</p>
-      <p>Hosetee 從根本改變遊戲規則，作品與載體解耦，一鍵搞定所有變更。</p>
+      <p>我們一起從根本改變遊戲規則，作品與載體解耦，一鍵搞定所有變更。</p>
       <p style="margin-top:20px;"><button class="btn btn-primary" id="hero-contact">立即聯繫我們 →</button></p>
     </div>
   </section>
@@ -194,14 +200,34 @@
         <span class="tag">模組 B</span>
         <h2 class="section-title">優越庫存管理系統</h2>
         <p class="section-subtitle">一鍵完成上千種商品的採購任務</p>
+        <div class="card" style="background:#fff3f4; border-left:4px solid rgba(230,57,70,.35);">
+          <p><strong class="danger">痛點</strong><br />
+            手動計算安全庫存、在途採購量、預購欠客數，每次進貨都像一場噩夢，多店多倉更倍增複雜度。
+          </p>
+        </div>
+        <div class="card" style="margin-top:10px; background:#eef7fc; border-left:4px solid rgba(69,123,157,.4);">
+          <p><strong class="good">解決方案</strong><br />
+            系統自動計算淨需求量，整合安全庫存、在途訂單與預購資料，一鍵產生採購建議單，大幅節省人力。
+          </p>
+        </div>
         <ul class="list">
           <li>自動採購建議：安全庫存 + 在途採購 + 預購欠客</li>
           <li>多店庫存管理與儲位定位</li>
-          <li>盲盤快速盤點系統，降低人為錯誤</li>
+          <li>盲盤快速盤點系統，杜絕人為作弊</li>
         </ul>
       </div>
       <div class="prototype">
         <p class="small">庫存採購建議試算</p>
+        <div style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; margin-top:8px;">
+          <div style="background:#f8fbff; border:1px solid #dbeafe; border-radius:10px; padding:8px;">
+            <div class="small">缺貨品項數</div>
+            <div style="font-weight:800; color:var(--red-pantone);"><span id="inv-oos-count">-</span></div>
+          </div>
+          <div style="background:#f8fbff; border:1px solid #dbeafe; border-radius:10px; padding:8px;">
+            <div class="small">建議總採購量</div>
+            <div style="font-weight:800; color:var(--berkeley-blue);"><span id="inv-total-buy">-</span></div>
+          </div>
+        </div>
         <div id="inventory-rows"></div>
         <button class="btn-solid" id="inventory-btn" style="margin-top:10px;">一鍵計算採購建議</button>
       </div>
@@ -214,6 +240,21 @@
         <span class="tag">模組 C</span>
         <h2 class="section-title">專業 POS 收銀系統</h2>
         <p class="section-subtitle">Film × Blank 完美結帳流程</p>
+        <div class="card" style="background:#fff3f4; border-left:4px solid rgba(230,57,70,.35);">
+          <p><strong class="danger">痛點</strong><br />
+            一般 POS 無法處理「膠膜 + 底衫」雙實體結帳邏輯，收銀員需手動組合計價，容易出錯且速度緩慢。
+          </p>
+        </div>
+        <div class="card" style="margin-top:10px; background:#eef7fc; border-left:4px solid rgba(69,123,157,.4);">
+          <p><strong class="good">解決方案</strong><br />
+            專為服飾轉印業設計，掃碼即可自動帶出膠膜與底衫組合、套用價格，一步完成結帳。
+          </p>
+        </div>
+        <ul class="list">
+          <li>掃碼即帶出完整商品組合</li>
+          <li>支援部分付款與多元金流</li>
+          <li>即時庫存扣減，零延遲</li>
+        </ul>
       </div>
       <div class="prototype dark">
         <p class="small" style="color:#93a4bf;">POS 收銀端 · 已連線</p>
@@ -234,12 +275,37 @@
         <span class="tag">模組 D</span>
         <h2 class="section-title">企業級銷售情報</h2>
         <p class="section-subtitle">即時掌握營銷成本與獲利狀況</p>
+        <div class="card" style="background:#fff3f4; border-left:4px solid rgba(230,57,70,.35);">
+          <p><strong class="danger">痛點</strong><br />
+            銷售資料散落各處，無法即時掌握作品、門市、時段的營收與獲利，決策往往只能憑直覺。
+          </p>
+        </div>
+        <div class="card" style="margin-top:10px; background:#eef7fc; border-left:4px solid rgba(69,123,157,.4);">
+          <p><strong class="good">解決方案</strong><br />
+            提供完整銷售儀表板，從作品、載體、門市、時段等多維度即時呈現營收、成本與毛利分析。
+          </p>
+        </div>
+        <ul class="list">
+          <li>多維度營收分析：作品 × 載體 × 門市 × 時段</li>
+          <li>即時毛利率追蹤</li>
+          <li>自動產生經營報表</li>
+        </ul>
       </div>
       <div class="prototype">
         <p class="small">銷售情報儀表板</p>
         <div style="display:flex; gap:16px;">
           <div><div class="small">本月營收</div><div class="kpi-value good">$<span id="rev-counter">0</span></div></div>
           <div><div class="small">毛利率</div><div class="kpi-value good"><span id="margin-counter">0</span>%</div></div>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; margin-top:10px;">
+          <div style="background:#f8fbff; border:1px solid #dbeafe; border-radius:10px; padding:8px;">
+            <div class="small">最佳銷售月份</div>
+            <div style="font-weight:800; color:var(--berkeley-blue);"><span id="sales-best-month">-</span></div>
+          </div>
+          <div style="background:#f8fbff; border:1px solid #dbeafe; border-radius:10px; padding:8px;">
+            <div class="small">半年營收成長</div>
+            <div style="font-weight:800; color:var(--cerulean);"><span id="sales-growth-counter">0</span>%</div>
+          </div>
         </div>
         <div class="chart" id="sales-chart"></div>
         <div class="small" style="margin-top:8px;">色塊：深色為毛利，淺色為成本</div>
@@ -253,6 +319,21 @@
         <span class="tag">模組 E</span>
         <h2 class="section-title">AI 智能報價系統</h2>
         <p class="section-subtitle">企業訂單快速精準報價</p>
+        <div class="card" style="background:#fff3f4; border-left:4px solid rgba(230,57,70,.35);">
+          <p><strong class="danger">痛點</strong><br />
+            企業客戶訂單量大、品項多，人工報價耗時且容易出錯，報價延遲直接影響成交率。
+          </p>
+        </div>
+        <div class="card" style="margin-top:10px; background:#eef7fc; border-left:4px solid rgba(69,123,157,.4);">
+          <p><strong class="good">解決方案</strong><br />
+            AI 依據訂單數量、品項組合、客戶歷史自動產生精準報價，縮短回覆時間，提升成交率。
+          </p>
+        </div>
+        <ul class="list">
+          <li>秒級自動報價</li>
+          <li>智能價格策略建議</li>
+          <li>歷史報價追蹤管理</li>
+        </ul>
       </div>
       <div class="prototype dark">
         <p class="small" style="color:#8fa2bf;">AI 報價引擎</p>
@@ -268,6 +349,21 @@
         <span class="tag">模組 F</span>
         <h2 class="section-title">會員 CRM 系統</h2>
         <p class="section-subtitle">購物金 × 點數 × 贈品兌換</p>
+        <div class="card" style="background:#fff3f4; border-left:4px solid rgba(230,57,70,.35);">
+          <p><strong class="danger">痛點</strong><br />
+            缺乏會員經營工具導致回購率低，紙本集點卡容易遺失，也無法追蹤消費行為。
+          </p>
+        </div>
+        <div class="card" style="margin-top:10px; background:#eef7fc; border-left:4px solid rgba(69,123,157,.4);">
+          <p><strong class="good">解決方案</strong><br />
+            完整數位會員系統，自動累積購物金與點數、等級升降、贈品兌換，交易全程可稽核。
+          </p>
+        </div>
+        <ul class="list">
+          <li>會員等級自動升降</li>
+          <li>點數換贈品系統</li>
+          <li>購物金折抵，稽核透明</li>
+        </ul>
       </div>
       <div class="prototype">
         <div class="member-card" id="crm-card">
@@ -298,6 +394,21 @@
         <span class="tag">模組 G</span>
         <h2 class="section-title">線上購物網站 O2O 整合</h2>
         <p class="section-subtitle">線上線下庫存即時同步</p>
+        <div class="card" style="background:#fff3f4; border-left:4px solid rgba(230,57,70,.35);">
+          <p><strong class="danger">痛點</strong><br />
+            線上線下各自為政，庫存不同步、會員資料不互通、促銷活動無法跨通路。
+          </p>
+        </div>
+        <div class="card" style="margin-top:10px; background:#eef7fc; border-left:4px solid rgba(69,123,157,.4);">
+          <p><strong class="good">解決方案</strong><br />
+            統一後端架構，商城與門市共享庫存、會員、訂單、促銷規則，真正實現 O2O 整合。
+          </p>
+        </div>
+        <ul class="list">
+          <li>線上線下庫存即時同步</li>
+          <li>跨通路會員統一歸戶</li>
+          <li>促銷規則全通路適用</li>
+        </ul>
       </div>
       <div class="prototype">
         <div class="stock-grid">
@@ -323,12 +434,28 @@
         <span class="tag">模組 H</span>
         <h2 class="section-title">Kiosk 點餐機系統</h2>
         <p class="section-subtitle">全台首創衣服點餐系統</p>
+        <div class="card" style="background:#fff3f4; border-left:4px solid rgba(230,57,70,.35);">
+          <p><strong class="danger">痛點</strong><br />
+            門市消費者需仰賴店員介紹與翻閱目錄，高峰時段排隊等候，購物體驗不佳。
+          </p>
+        </div>
+        <div class="card" style="margin-top:10px; background:#eef7fc; border-left:4px solid rgba(69,123,157,.4);">
+          <p><strong class="good">解決方案</strong><br />
+            消費者可自助瀏覽作品、選擇載體與尺寸、即時預覽效果，大幅優化門市體驗。
+          </p>
+        </div>
+        <ul class="list">
+          <li>自助式觸控操作，分流排隊人潮</li>
+          <li>即時預覽作品上身效果</li>
+          <li>自動列印小白單，無縫接軌 POS</li>
+        </ul>
       </div>
       <div class="prototype" style="background:#f4f7fb;">
         <div class="kiosk-preview" id="kiosk-preview">
-          <svg viewBox="0 0 96 96" width="92" height="92" aria-hidden="true">
-            <path id="kiosk-shirt" d="M28 18L38 12H58L68 18L80 28L72 40L66 35V80H30V35L24 40L16 28L28 18Z" fill="#f8f8f8" stroke="#1d3557" stroke-width="2.5" stroke-linejoin="round" />
-            <path d="M38 12C40.5 17 43.8 19.5 48 19.5C52.2 19.5 55.5 17 58 12" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="2" stroke-linecap="round" />
+          <svg viewBox="0 0 512 512" width="118" height="118" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <path id="kiosk-collar" d="M256,96c33.08,0,60.71-25.78,64-58,.3-3-3-6-6-6h0a13,13,0,0,0-4.74.9c-.2.08-21.1,8.1-53.26,8.1s-53.1-8-53.26-8.1a16.21,16.21,0,0,0-5.3-.9h-.06A5.69,5.69,0,0,0,192,38C195.35,70.16,223,96,256,96Z" fill="#1a1a1a"></path>
+            <path id="kiosk-shirt" d="M485.29,89.9,356,44.64a4,4,0,0,0-5.27,3.16,96,96,0,0,1-189.38,0A4,4,0,0,0,156,44.64L26.71,89.9A16,16,0,0,0,16.28,108l16.63,88A16,16,0,0,0,46.83,208.9l48.88,5.52a8,8,0,0,1,7.1,8.19l-7.33,240.9a16,16,0,0,0,9.1,14.94A17.49,17.49,0,0,0,112,480H400a17.49,17.49,0,0,0,7.42-1.55,16,16,0,0,0,9.1-14.94l-7.33-240.9a8,8,0,0,1,7.1-8.19l48.88-5.52A16,16,0,0,0,479.09,196l16.63-88A16,16,0,0,0,485.29,89.9Z" fill="#f8f8f8"></path>
+            <text x="256" y="305" text-anchor="middle" font-size="86">🐱</text>
           </svg>
         </div>
         <div class="small">選擇顏色</div>
@@ -343,7 +470,7 @@
   <section class="cta">
     <div class="container">
       <h2 style="margin:0 0 8px;">準備好讓您的服飾品牌升級了嗎？</h2>
-      <p style="margin:0 0 18px; opacity:.9;">已有數十家品牌透過 Hosetee 降低營運成本、提升管理效率。</p>
+      <p style="margin:0 0 18px; opacity:.9;">已有數十家品牌透過 RENEW Customization Solutions 降低營運成本、提升管理效率。</p>
       <button class="btn btn-primary" id="cta-contact">聯繫我們，了解更多</button>
     </div>
   </section>
@@ -396,6 +523,24 @@
         { name: "藍色 L", current: 7, safety: 10, preorder: 0, transit: 3 },
         { name: "灰色 XL", current: 1, safety: 10, preorder: 3, transit: 0 }
       ];
+      const getInventorySummary = () => {
+        const oosCount = inventoryRows.filter((r) => r.current === 0).length;
+        const totalBuy = inventoryRows.reduce((sum, r) => {
+          return sum + Math.max(0, r.preorder + r.safety - r.current - r.transit);
+        }, 0);
+        return { oosCount, totalBuy };
+      };
+      const updateInventorySummary = (ready) => {
+        if (!ready) {
+          $("inv-oos-count").textContent = "-";
+          $("inv-total-buy").textContent = "-";
+          return;
+        }
+        const summary = getInventorySummary();
+        $("inv-oos-count").textContent = String(summary.oosCount);
+        $("inv-total-buy").textContent = String(summary.totalBuy);
+      };
+      updateInventorySummary(false);
       const invEl = $("inventory-rows");
       invEl.innerHTML = inventoryRows.map((r, i) => {
         const max = r.safety * 1.5;
@@ -412,8 +557,17 @@
               '<i class="bar-fill" id="inv-fill-' + i + '" style="background:' + (r.current < r.safety ? "#e66b75" : "#5ea3c8") + ';"></i>' +
               '<i class="bar-line" style="left:' + safetyPct + '%;"></i>' +
             '</div>' +
-            '<div class="small" style="margin-top:6px;">安全庫存 ' + r.safety + ' + 預購 ' + r.preorder + ' - 現有 ' + r.current + ' - 在途 ' + r.transit + '</div>' +
-            '<div class="small" id="inv-result-' + i + '" style="margin-top:4px; color:var(--berkeley-blue); font-weight:700;">尚未計算</div>' +
+            '<div style="margin-top:8px; display:flex; flex-wrap:wrap; align-items:center; gap:6px; font-size:12px; font-weight:700;">' +
+              '<span style="color:#f59e0b;">安全庫存 ' + r.safety + '</span>' +
+              '<span style="color:#9ca3af;">+</span>' +
+              '<span style="color:#fb923c;">預購 ' + r.preorder + '</span>' +
+              '<span style="color:#9ca3af;">-</span>' +
+              '<span style="color:#457b9d;">現有 ' + r.current + '</span>' +
+              '<span style="color:#9b5de5;">-</span>' +
+              '<span style="color:#9b5de5;">在途 ' + r.transit + '</span>' +
+              '<span style="color:#9ca3af;">=</span>' +
+              '<span id="inv-result-' + i + '" style="display:inline-flex; align-items:center; border-radius:999px; padding:3px 10px; background:#e5e7eb; color:#334155;">待計算</span>' +
+            '</div>' +
           '</div>'
         );
       }).join("");
@@ -423,8 +577,12 @@
         if (invDone) {
           inventoryRows.forEach((_, i) => {
             $("inv-fill-" + i).style.width = "0%";
-            $("inv-result-" + i).textContent = "尚未計算";
+            const resultEl = $("inv-result-" + i);
+            resultEl.textContent = "待計算";
+            resultEl.style.background = "#e5e7eb";
+            resultEl.style.color = "#334155";
           });
+          updateInventorySummary(false);
           $("inventory-btn").textContent = "一鍵計算採購建議";
           invDone = false;
           return;
@@ -435,9 +593,19 @@
           const suggestion = Math.max(0, r.preorder + r.safety - r.current - r.transit);
           setTimeout(() => {
             $("inv-fill-" + i).style.width = currentPct + "%";
-            $("inv-result-" + i).textContent = suggestion > 0 ? ("建議採購 " + suggestion) : "庫存充足";
+            const resultEl = $("inv-result-" + i);
+            if (suggestion > 0) {
+              resultEl.textContent = "建議採購 " + suggestion;
+              resultEl.style.background = "#457b9d";
+              resultEl.style.color = "#ffffff";
+            } else {
+              resultEl.textContent = "充足";
+              resultEl.style.background = "#dcfce7";
+              resultEl.style.color = "#15803d";
+            }
           }, 140 * i);
         });
+        updateInventorySummary(true);
         $("inventory-btn").textContent = "重新示範";
         invDone = true;
       });
@@ -491,6 +659,10 @@
         { month: "5月", revenue: 89, cost: 48 },
         { month: "6月", revenue: 95, cost: 50 }
       ];
+      const bestMonth = chartData.reduce((max, row) => row.revenue > max.revenue ? row : max, chartData[0]);
+      const firstRevenue = chartData[0].revenue;
+      const lastRevenue = chartData[chartData.length - 1].revenue;
+      const halfYearGrowthPct = Math.round(((lastRevenue - firstRevenue) / firstRevenue) * 100);
       $("sales-chart").innerHTML = chartData.map((d) => (
         '<div class="col"><i class="cost"></i><i class="margin"></i><span class="small" style="text-align:center;">' + d.month + "</span></div>"
       )).join("");
@@ -507,6 +679,8 @@
       };
       animateCounter("rev-counter", 95800, 1200);
       animateCounter("margin-counter", 47, 1000);
+      $("sales-best-month").textContent = bestMonth.month + "（" + bestMonth.revenue + "）";
+      animateCounter("sales-growth-counter", halfYearGrowthPct, 1000);
       setTimeout(() => {
         Array.from(document.querySelectorAll("#sales-chart .col")).forEach((col, i) => {
           const cost = col.querySelector(".cost");
@@ -610,10 +784,11 @@
 
       // H: Kiosk
       const kioskColors = [
-        { name: "白色", hex: "#f8f8f8", border: "#ddd" },
         { name: "黑色", hex: "#1a1a1a", border: "#555" },
         { name: "藍色", hex: "#457b9d", border: "#457b9d" },
-        { name: "灰色", hex: "#9ca3af", border: "#9ca3af" }
+        { name: "紅色", hex: "#e63946", border: "#e63946" },
+        { name: "綠色", hex: "#16a34a", border: "#16a34a" },
+        { name: "紫色", hex: "#7c3aed", border: "#7c3aed" }
       ];
       const kioskSizes = ["XS", "S", "M", "L", "XL"];
       let kioskColor = 0;
@@ -621,8 +796,7 @@
 
       const renderKiosk = () => {
         $("kiosk-shirt").setAttribute("fill", kioskColors[kioskColor].hex);
-        $("kiosk-preview").style.background = kioskColors[kioskColor].hex;
-        $("kiosk-preview").style.borderColor = kioskColors[kioskColor].border;
+        $("kiosk-collar").setAttribute("fill", kioskColors[kioskColor].hex);
         $("kiosk-colors").innerHTML = kioskColors.map((c, i) =>
           '<button class="dot ' + (i === kioskColor ? "active" : "") + '" data-color="' + i + '" title="' + c.name + '" style="background:' + c.hex + '; border-color:' + c.border + ';"></button>'
         ).join("");
